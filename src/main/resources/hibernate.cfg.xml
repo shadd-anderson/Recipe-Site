@@ -1,0 +1,6 @@
+<hibernate-configuration>
+    <session-factory>
+        <property name="dialect">org.hibernate.dialect.H2Dialect</property>
+        <property name="hbm2ddl.auto">update</property>
+    </session-factory>
+</hibernate-configuration>

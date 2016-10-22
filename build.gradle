@@ -1,0 +1,50 @@
+group 'com.recipes'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath('org.springframework.boot:spring-boot-gradle-plugin:1.3.3.RELEASE')
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    dev
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    compile 'com.github.slugify:slugify:2.1.7'
+    compile 'org.springframework.boot:spring-boot-starter-data-rest'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile 'com.h2database:h2'
+    compile 'org.springframework.data:spring-data-rest-hal-browser'
+    compile 'org.springframework.boot:spring-boot-starter-security'
+    compile 'com.google.code.gson:gson'
+    compile 'org.apache.tomcat:tomcat-dbcp:8.5.6'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    dev 'org.springframework.boot:spring-boot-devtools'
+    testCompile 'junit:junit'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile 'org.dbunit:dbunit'
+    testCompile 'com.github.springtestdbunit:spring-test-dbunit'
+    testCompile 'org.assertj:assertj-core'
+    testCompile 'net.sourceforge.htmlunit:htmlunit'
+    testCompile 'org.easytesting:fest-assert'
+}
+
+bootRun {
+    classpath = sourceSets.main.runtimeClasspath + configurations.dev
+}
