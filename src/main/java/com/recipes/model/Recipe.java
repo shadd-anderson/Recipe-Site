@@ -2,18 +2,17 @@ package com.recipes.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String name;
     private String category;
-    private Map<String, Integer> ingredients;
+    @OneToMany
+    private List<Ingredient> ingredients;
     private List<String> instructions;
     private int prepTime;
     private int cookTime;
@@ -36,7 +35,7 @@ public class Recipe {
         private int id;
         private String name;
         private String category;
-        private Map<String, Integer> ingredients;
+        private List<Ingredient> ingredients;
         private List<String> instructions;
         private int prepTime;
         private int cookTime;
@@ -45,17 +44,17 @@ public class Recipe {
         public RecipeBuilder(String name, String category) {
             this.name = name;
             this.category = category;
-            ingredients = new HashMap<>();
+            ingredients = new ArrayList<>();
             instructions = new ArrayList<>();
         }
 
-        public RecipeBuilder setIngredients(Map<String, Integer> ingredients) {
+        public RecipeBuilder setIngredients(List<Ingredient> ingredients) {
             this.ingredients = ingredients;
             return this;
         }
 
-        public RecipeBuilder addIngredient(String ingredient, int measurement) {
-            ingredients.put(ingredient, measurement);
+        public RecipeBuilder addIngredient(Ingredient ingredient) {
+            ingredients.add(ingredient);
             return this;
         }
 
@@ -89,11 +88,11 @@ public class Recipe {
         }
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -113,16 +112,16 @@ public class Recipe {
         this.category = category;
     }
 
-    public Map<String, Integer> getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(Map<String, Integer> ingredients) {
+    public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
-    public void addIngredient(String ingredient, int measurement) {
-        ingredients.put(ingredient, measurement);
+    public void addIngredient(Ingredient ingredient) {
+        ingredients.add(ingredient);
     }
 
     public List<String> getInstructions() {
