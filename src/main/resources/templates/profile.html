@@ -5,7 +5,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width"/>
 
-  <title>Chandra S. | My Recipes</title>
+  <title>Chandra S. | Supreme Recipes</title>
 
   <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'/>
   <link rel="stylesheet" href="css/unsemantic-grid-responsive.css"/>
@@ -25,58 +25,85 @@
 
       <div class="recipes">
 
-        <div class="grid-100 row controls">
+        <div class="grid-100 row controls section">
           <div class="grid-100">
             <h2> Chandra S. </h2>
           </div>
-        </div> <div class="clear"></div>
-
-        <div class="grid-100 row addHover">
-          <a href="detail.html">
-            <div class="grid-70">
-              <p>
-                <span><img th:src="@{images/favorited.svg}" height="12px"/> </span>
-                Broiche French Toast with Nutella
-              </p>
+        </div>
+      </div>
+      <div class="recipes">
+          <div class="grid-100 row controls">
+            <div class="grid-100">
+              <h3> Submitted Recipes: </h3>
             </div>
-          </a>
-          <div class="hoverBlock">
-            <div class="grid-30">
-              <div class="flush-right">
+          </div>
+
+          <div class="grid-100 row addHover">
+            <a href="detail.html">
+              <div class="grid-70">
                 <p>
-                  <a href="#"> <img th:src="@{images/edit.svg}" height="12px"/> Edit </a>
-                  <a href="#"> <img th:src="@{images/delete.svg}" height="12px"/> Delete </a>
+                  Broiche French Toast with Nutella
                 </p>
+              </div>
+            </a>
+            <div class="hoverBlock">
+              <div class="grid-30">
+                <div class="flush-right">
+                  <p>
+                    <a href="#"> <img th:src="@{images/edit.svg}" height="12px"/> Edit </a>
+                    <a href="#"> <img th:src="@{images/delete.svg}" height="12px"/> Delete </a>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div> <div class="clear"></div>
 
-        <div class="grid-100 row addHover">
-          <a href="detail.html">
-            <div class="grid-70">
-              <p>
-                <span><img th:src="@{images/favorited.svg}" height="12px"/> </span>
-                Meyer Lemon French Toast
-              </p>
-            </div>
-          </a>
-          <div class="hoverBlock">
-            <div class="grid-30">
-              <div class="flush-right">
+          <div class="grid-100 row addHover">
+            <a href="detail.html">
+              <div class="grid-70">
                 <p>
-                  <a href="#"> <img th:src="@{images/edit.svg}" height="12px"/> Edit </a>
-                  <a href="#"> <img th:src="@{images/delete.svg}" height="12px"/> Delete </a>
+                  Meyer Lemon French Toast
                 </p>
+              </div>
+            </a>
+            <div class="hoverBlock">
+              <div class="grid-30">
+                <div class="flush-right">
+                  <p>
+                    <a href="#"> <img th:src="@{images/edit.svg}" height="12px"/> Edit </a>
+                    <a href="#"> <img th:src="@{images/delete.svg}" height="12px"/> Delete </a>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div> <div class="clear"></div>
-
-        <div class="row">&nbsp;</div>
-
+      </div>
+        <div class="recipes">
+          <div class="grid-100 row controls">
+            <div class="grid-100">
+              <h3> Favorited Recipes: </h3>
+            </div>
+          </div>
+            <div class="grid-100 row addHover">
+              <a href="detail.html">
+                <div class="grid-70">
+                  <p>
+                    Broiche French Toast with Nutella
+                  </p>
+                </div>
+              </a>
+              <div class="hoverBlock">
+                <div class="grid-30">
+                  <div class="flush-right">
+                    <p>
+                      <a href="#"> <img th:src="@{images/favorite.svg}" height="12px"/> Remove from favorites </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              </div>
+        </div>
       </div> <!-- recipes -->
-    </div> <!-- grid-100 -->
-  </div> <!-- grid-container -->
+    </div> <!-- grid-100 --><!-- grid-container -->
 </body>
 </html>

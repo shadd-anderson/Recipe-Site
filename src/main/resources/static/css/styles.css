@@ -97,14 +97,46 @@ button {
 .addHover .hoverBlock {
   opacity: 0;
   transition: all ease-in-out 0.3s; }
-  .addHover .hoverBlock a {
-    margin-right: 12px; }
-    .addHover .hoverBlock a:last-child {
-      margin-right: 0; }
+  .addHover .hoverBlock p {
+    margin-right: 10px;
+     display: inline-block; }
+  .addHover .hoverBlock form, .addHover .hoverBlock button {
+    background: white;
+    display: inline;
+    color: #808080;
+    font-size: 16px;
+    padding: 0;
+  }
 .addHover:hover .hoverBlock {
   opacity: 1; }
 
 .flush-right {
   float: right; }
+
+.break {
+    background: #f6ebe5 !important;
+}
+
+.break::before {
+    border-radius: 8px;
+}
+
+.section {
+    border-radius: 8px !important;
+}
+
+.grid-30 {
+    padding-right: 0;
+}
+
+.grid-70 p {
+    display: inline-block;
+    padding-left: 15px;
+}
+
+.step-row .prefix-20:first-child {
+    display: inline-block;
+    margin-left: 0;
+}
 
 /*# sourceMappingURL=styles.css.map */

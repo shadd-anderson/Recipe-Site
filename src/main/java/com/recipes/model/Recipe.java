@@ -7,7 +7,9 @@ import java.util.List;
 @Entity
 public class Recipe extends GenericEntity {
     private String name;
-    private String category;
+    private String description;
+    @ManyToOne
+    private Category category;
     @OneToMany
     private List<Ingredient> ingredients;
     @ElementCollection
@@ -28,6 +30,7 @@ public class Recipe extends GenericEntity {
     public Recipe(RecipeBuilder builder) {
         this();
         this.name = builder.name;
+        this.description = builder.description;
         this.category = builder.category;
         this.ingredients = builder.ingredients;
         this.instructions = builder.instructions;
@@ -38,14 +41,15 @@ public class Recipe extends GenericEntity {
 
     public static class RecipeBuilder {
         private String name;
-        private String category;
+        private String description;
+        private Category category;
         private List<Ingredient> ingredients;
         private List<String> instructions;
         private int prepTime;
         private int cookTime;
         private byte[] image;
 
-        public RecipeBuilder(String name, String category) {
+        public RecipeBuilder(String name, Category category) {
             this.name = name;
             this.category = category;
             ingredients = new ArrayList<>();
@@ -62,12 +66,8 @@ public class Recipe extends GenericEntity {
             return this;
         }
 
-        public RecipeBuilder setInstructions(List<String> instructions) {
-            this.instructions = instructions;
-            return this;
-        }
-
         public RecipeBuilder addInstruction(String instruction, int step) {
+            instruction = String.format("%d. %s", step + 1, instruction);
             instructions.add(step, instruction);
             return this;
         }
@@ -87,6 +87,11 @@ public class Recipe extends GenericEntity {
             return this;
         }
 
+        public RecipeBuilder setDescription(String description) {
+            this.description = description;
+            return this;
+        }
+
         public Recipe build() {
             return new Recipe(this);
         }
@@ -100,11 +105,11 @@ public class Recipe extends GenericEntity {
         this.name = name;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -124,11 +129,8 @@ public class Recipe extends GenericEntity {
         return instructions;
     }
 
-    public void setInstructions(List<String> instructions) {
-        this.instructions = instructions;
-    }
-
     public void addInstruction(String instruction, int step) {
+        instruction = String.format("%d. %s", step + 1, instruction);
         instructions.add(step, instruction);
     }
 
@@ -162,5 +164,13 @@ public class Recipe extends GenericEntity {
 
     public void setCreatedBy(User createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
