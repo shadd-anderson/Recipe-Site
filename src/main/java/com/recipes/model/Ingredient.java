@@ -6,26 +6,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Ingredient {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Ingredient extends GenericEntity {
     private String name;
     private int amount;
 
-    public Ingredient() {}
+    public Ingredient() {
+        super();
+    }
 
     public Ingredient(String name, int amount) {
+        this();
         this.name = name;
         this.amount = amount;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

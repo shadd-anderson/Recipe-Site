@@ -5,23 +5,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Recipe {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Recipe extends GenericEntity {
     private String name;
     private String category;
     @OneToMany
     private List<Ingredient> ingredients;
+    @ElementCollection
     private List<String> instructions;
     private int prepTime;
     private int cookTime;
     @Lob
     private byte[] image;
+    @ManyToOne
+    private User createdBy;
 
-    public Recipe() {}
+    public Recipe() {
+        super();
+        ingredients = new ArrayList<>();
+        instructions = new ArrayList<>();
+    }
 
     public Recipe(RecipeBuilder builder) {
+        this();
         this.name = builder.name;
         this.category = builder.category;
         this.ingredients = builder.ingredients;
@@ -32,7 +37,6 @@ public class Recipe {
     }
 
     public static class RecipeBuilder {
-        private int id;
         private String name;
         private String category;
         private List<Ingredient> ingredients;
@@ -86,14 +90,6 @@ public class Recipe {
         public Recipe build() {
             return new Recipe(this);
         }
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -158,5 +154,13 @@ public class Recipe {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
     }
 }

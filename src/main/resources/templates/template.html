@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-</head>
-<body>
+<nav th:fragment="navigation">
+    <a th:href="@{/profile}">
+        Chandra S.
+    </a>
+    &bull;
+    <a th:href="@{/login}">
+        logout
+    </a>
+</nav>
 
-</body>
-</html>
+<div th:fragment="chef-logo" class="grid-100">
+    <a th:href="@{/}">
+        <h1>
+            <img th:src="@{/images/chefbot.svg}" height="60px"/>
+            <br/>
+            My Recipes
+        </h1>
+    </a>
+</div>

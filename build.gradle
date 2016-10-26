@@ -37,11 +37,7 @@ dependencies {
     dev 'org.springframework.boot:spring-boot-devtools'
     testCompile 'junit:junit'
     testCompile 'org.springframework.boot:spring-boot-starter-test'
-    testCompile 'org.dbunit:dbunit'
-    testCompile 'com.github.springtestdbunit:spring-test-dbunit'
     testCompile 'org.assertj:assertj-core'
-    testCompile 'net.sourceforge.htmlunit:htmlunit'
-    testCompile 'org.easytesting:fest-assert'
 }
 
 bootRun {

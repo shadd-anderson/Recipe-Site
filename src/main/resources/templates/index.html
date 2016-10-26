@@ -9,33 +9,17 @@
 
   <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'/>
   <link rel="stylesheet" th:href="@{css/unsemantic-grid-responsive.css}"/>
-  <link rel="stylesheet" th:href="@{css/styles.css}">
+  <link rel="stylesheet" th:href="@{css/styles.css}"/>
 
 </head>
 
 <body>
 
-  <nav>
-    <a th:href="@{/profile}">
-      Chandra S.
-    </a>
-    &bull;
-    <a th:href="@{/login}">
-      logout
-    </a>
-  </nav>
+  <div th:replace="template :: navigation"></div>
 
   <div class="grid-container">
 
-    <div class="grid-100">
-      <a th:href="@{/}">
-        <h1>
-          <img th:src="@{/images/chefbot.svg}" height="60px">
-          <br>
-          My Recipes
-        </h1>
-      </a>
-    </div>
+    <div th:replace="template :: chef-logo"></div>
 
     <div class="grid-100">
 
@@ -52,7 +36,7 @@
             </select>
           </div>
           <div class="grid-40">
-            <input placeholder="Search"></input>
+            <input placeholder="Search"/>
           </div>
           <div class="grid-30">
             <div class="flush-right">
@@ -62,10 +46,10 @@
         </div> <div class="clear"></div>
 
         <div class="grid-100 row addHover">
-          <a href="detail.html">
+          <a th:href="@{/detail}">
             <div class="grid-70">
               <p>
-                <span><img src="../static/images/favorite.svg" height="12px"> </span>
+                <span><img th:src="@{/images/favorite.svg}" height="12px"/> </span>
                 Baked Alaskan Salmon with Asparagus
               </p>
             </div>
@@ -74,8 +58,8 @@
             <div class="grid-30">
               <div class="flush-right">
                 <p>
-                  <a href="edit.html"> <img src="../static/images/edit.svg" height="12px"> Edit </a>
-                  <a href="#"> <img src="../static/images/delete.svg" height="12px"> Delete </a>
+                  <a href="edit.html"> <img th:src="@{/images/edit.svg}" height="12px"/> Edit </a>
+                  <a href="#"> <img th:src="@{/images/delete.svg}" height="12px"/> Delete </a>
                 </p>
               </div>
             </div>
@@ -86,7 +70,7 @@
           <a href="detail.html">
             <div class="grid-70">
               <p>
-                <span><img src="../static/images/favorited.svg" height="12px"> </span>
+                <span><img th:src="@{/images/favorited.svg}" height="12px"/> </span>
                 Broiche French Toast with Nutella
               </p>
             </div>
@@ -95,8 +79,8 @@
             <div class="grid-30">
               <div class="flush-right">
                 <p>
-                  <a href="#"> <img src="../static/images/edit.svg" height="12px"> Edit </a>
-                  <a href="#"> <img src="../static/images/delete.svg" height="12px"> Delete </a>
+                  <a href="#"> <img th:src="@{/images/edit.svg}" height="12px"/> Edit </a>
+                  <a href="#"> <img th:src="@{/images/delete.svg}" height="12px"/> Delete </a>
                 </p>
               </div>
             </div>
@@ -107,7 +91,7 @@
           <a href="detail.html">
             <div class="grid-70">
               <p>
-                <span><img src="../static/images/favorite.svg" height="12px"> </span>
+                <span><img th:src="@{/images/favorite.svg}" height="12px"/> </span>
                 Simple Miso Soup with Clams and Sake
               </p>
             </div>
@@ -116,8 +100,8 @@
             <div class="grid-30">
               <div class="flush-right">
                 <p>
-                  <a href="#"> <img src="images/edit.svg" height="12px"> Edit </a>
-                  <a href="#"> <img src="images/delete.svg" height="12px"> Delete </a>
+                  <a href="#"> <img th:src="@{/images/edit.svg}" height="12px"/> Edit </a>
+                  <a href="#"> <img th:src="@{/images/delete.svg}" height="12px"/> Delete </a>
                 </p>
               </div>
             </div>
@@ -128,7 +112,7 @@
           <a href="detail.html">
             <div class="grid-70">
               <p>
-                <span><img src="images/favorite.svg" height="12px"> </span>
+                <span><img th:src="@{/images/favorite.svg}" height="12px"/> </span>
                 Paleo Squash Noodles with Chicken Breast
               </p>
             </div>
@@ -137,8 +121,8 @@
             <div class="grid-30">
               <div class="flush-right">
                 <p>
-                  <a href="#"> <img src="images/edit.svg" height="12px"> Edit </a>
-                  <a href="#"> <img src="images/delete.svg" height="12px"> Delete </a>
+                  <a href="#"> <img th:src="@{/images/edit.svg}" height="12px"/> Edit </a>
+                  <a href="#"> <img th:src="@{/images/delete.svg}" height="12px"/> Delete </a>
                 </p>
               </div>
             </div>
