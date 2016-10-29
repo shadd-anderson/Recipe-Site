@@ -39,7 +39,9 @@ public class DatabaseLoader implements ApplicationRunner {
         Ingredient ingredient = new Ingredient("pizza", "pie", 1);
         ingredients.save(ingredient);
         Category american = new Category("American");
+        Category italian = new Category("Italian");
         categories.save(american);
+        categories.save(italian);
         Recipe pizza = new Recipe.RecipeBuilder("Pizza", american)
                 .addIngredient(ingredient)
                 .setDescription("Mmm... Delicious pizza")
@@ -49,7 +51,9 @@ public class DatabaseLoader implements ApplicationRunner {
                 .addInstruction("Cook pizza for 15 minutes", 1)
                 .build();
         Recipe burger = new Recipe.RecipeBuilder("Burger", american).build();
+        Recipe spaghetti = new Recipe.RecipeBuilder("Spaghetti", italian).build();
         recipes.save(pizza);
         recipes.save(burger);
+        recipes.save(spaghetti);
     }
 }

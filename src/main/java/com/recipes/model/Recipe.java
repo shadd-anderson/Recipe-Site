@@ -16,10 +16,10 @@ public class Recipe extends GenericEntity {
     private List<String> instructions;
     private int prepTime;
     private int cookTime;
-    @Lob
-    private byte[] image;
     @ManyToOne
     private User createdBy;
+    @OneToOne
+    private Image image;
 
     public Recipe() {
         super();
@@ -47,7 +47,7 @@ public class Recipe extends GenericEntity {
         private List<String> instructions;
         private int prepTime;
         private int cookTime;
-        private byte[] image;
+        private Image image;
 
         public RecipeBuilder(String name, Category category) {
             this.name = name;
@@ -82,7 +82,7 @@ public class Recipe extends GenericEntity {
             return this;
         }
 
-        public RecipeBuilder setImage(byte[] image) {
+        public RecipeBuilder setImage(Image image) {
             this.image = image;
             return this;
         }
@@ -150,14 +150,6 @@ public class Recipe extends GenericEntity {
         this.cookTime = cookTime;
     }
 
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
-
     public User getCreatedBy() {
         return createdBy;
     }
@@ -172,5 +164,13 @@ public class Recipe extends GenericEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 }

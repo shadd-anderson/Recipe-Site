@@ -26,18 +26,22 @@
       <div class="recipes">
 
         <div class="grid-100 row controls">
-          <div class="grid-30">
-            <select>
-              <option value="">All Categories</option>
-              <option th:each="category: ${categories}" th:value="${category}" th:text="${category.name}">Breakfast</option>
-            </select>
-          </div>
-          <div class="grid-40">
-            <input placeholder="Search"/>
-          </div>
+          <form action="/search" method="get">
+            <div class="grid-30">
+              <select name="category">
+                <option value="">All Categories</option>
+                <option th:each="category: ${categories}" th:value="${category}" th:text="${category.name}">Breakfast</option>
+              </select>
+            </div>
+            <div class="grid-40">
+                <input placeholder="Search..." name="searchQuery" th:value="${search}"/>
+            </div>
+          </form>
           <div class="grid-30">
             <div class="flush-right">
-              <button>+ Add Recipe</button>
+              <form action="/recipes/add">
+                <button>+ Add Recipe</button>
+              </form>
             </div>
           </div>
         </div> <div class="clear"></div>
@@ -55,8 +59,8 @@
             <div class="grid-30">
               <div class="flush-right">
                 <p>
-                  <a href="@{|/recipes/${recipe.id}/edit|}"> <img th:src="@{/images/edit.svg}" height="12px"/> Edit </a>
-                  <form href="@{|/recipes/${recipe.id}/delete|}" method="post"><button><img th:src="@{/images/delete.svg}" height="12px"/> Delete </button></form>
+                  <a th:href="@{|/recipes/${recipe.id}/edit|}"> <img th:src="@{/images/edit.svg}" height="12px"/> Edit </a>
+                  <form th:action="@{|/recipes/${recipe.id}/delete|}" method="post"><button type="submit"><img th:src="@{/images/delete.svg}" height="12px"/> Delete </button></form>
                 </p>
               </div>
             </div>
