@@ -18,8 +18,7 @@ public class Recipe extends GenericEntity {
     private int cookTime;
     @ManyToOne
     private User createdBy;
-    @OneToOne
-    private Image image;
+    private String imageUrl;
 
     public Recipe() {
         super();
@@ -36,7 +35,7 @@ public class Recipe extends GenericEntity {
         this.instructions = builder.instructions;
         this.prepTime = builder.prepTime;
         this.cookTime = builder.cookTime;
-        this.image = builder.image;
+        this.imageUrl = builder.imageUrl;
     }
 
     public static class RecipeBuilder {
@@ -47,7 +46,7 @@ public class Recipe extends GenericEntity {
         private List<String> instructions;
         private int prepTime;
         private int cookTime;
-        private Image image;
+        private String imageUrl;
 
         public RecipeBuilder(String name, Category category) {
             this.name = name;
@@ -82,8 +81,8 @@ public class Recipe extends GenericEntity {
             return this;
         }
 
-        public RecipeBuilder setImage(Image image) {
-            this.image = image;
+        public RecipeBuilder setImage(String imageUrl) {
+            this.imageUrl = imageUrl;
             return this;
         }
 
@@ -166,11 +165,11 @@ public class Recipe extends GenericEntity {
         this.description = description;
     }
 
-    public Image getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

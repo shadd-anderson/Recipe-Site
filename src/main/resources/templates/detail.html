@@ -29,6 +29,7 @@
         <div class="grid-100 row controls">
           <div class="grid-50">
             <h2 th:text="${recipe.name}"> Brioche French Toast with Nutella </h2>
+            <a th:href="@{|/users/${recipe.createdBy.id}|}"><h3 th:text="|by ${recipe.createdBy.username}|">by user</h3></a>
           </div>
           <div class="grid-50">
             <h2 class="flush-right">
@@ -46,9 +47,7 @@
             </p>
           </div>
           <div class="grid-40">
-            <p>
-              [There will be a photo here!]
-            </p>
+              <img class="recipe-image" th:src="@{${recipe.imageUrl}}" th:alt="|[${recipe.name}]|"/>
           </div>
         </div> <div class="clear"></div>
 
@@ -141,7 +140,7 @@
                     </p>
                   </div>
                   <div class="grid-10 suffix-10">
-                    <p th:text="|${ingredient.amount} ${ingredient.measurement}|">
+                    <p th:text="|${ingredient.quantity} ${ingredient.measurement}|">
                       2
                     </p>
                   </div>

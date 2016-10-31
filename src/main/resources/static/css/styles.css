@@ -27,6 +27,12 @@ nav {
   margin-top: 10px;
   margin-right: 30px; }
 
+.recipe-image {
+  max-height: 400px;
+  max-width: 450px;
+  margin: 5%;
+}
+
 .controls button {
   margin: 20px 0; }
 .controls select, .controls input {

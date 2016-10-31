@@ -1,25 +1,22 @@
 package com.recipes.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 @Entity
 public class Ingredient extends GenericEntity {
     private String name;
     private String measurement;
-    private int amount;
+    private int quantity;
 
     public Ingredient() {
         super();
     }
 
-    public Ingredient(String name, String measurement, int amount) {
+    public Ingredient(String name, String measurement, int quantity) {
         this();
         this.name = name;
         this.measurement = measurement;
-        this.amount = amount;
+        this.quantity = quantity;
     }
 
     public String getName() {
@@ -38,11 +35,11 @@ public class Ingredient extends GenericEntity {
         this.measurement = measurement;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

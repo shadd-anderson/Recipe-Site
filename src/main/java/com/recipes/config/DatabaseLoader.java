@@ -49,6 +49,7 @@ public class DatabaseLoader implements ApplicationRunner {
                 .setPrepTime(5)
                 .addInstruction("Place pizza in oven", 0)
                 .addInstruction("Cook pizza for 15 minutes", 1)
+                .setImage("http://kingrichiespizza.com/wp-content/uploads/2015/12/d5a3498cfc9e53130b5f815ef44713b7_Jet.jpg")
                 .build();
         Recipe burger = new Recipe.RecipeBuilder("Burger", american).build();
         Recipe spaghetti = new Recipe.RecipeBuilder("Spaghetti", italian).build();
