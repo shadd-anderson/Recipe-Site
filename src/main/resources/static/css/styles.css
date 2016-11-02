@@ -145,4 +145,10 @@ button {
     margin-left: 0;
 }
 
+.error-message {
+  background: #cc0000;
+  margin: -3% auto 3% auto;
+  width: 90%;
+}
+
 /*# sourceMappingURL=styles.css.map */

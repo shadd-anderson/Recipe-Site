@@ -29,8 +29,11 @@
 
     <div th:replace="template :: chef-logo"></div>
 
+    <div class="error-message" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+
     <div class="grid-100">
       <div class="recipes">
+        <form th:action="@{/login}" method="post">
         <div class="prefix-20 grid-60 suffix-20">
           <p>
             <input placeholder="Username"/>
@@ -46,6 +49,7 @@
             <button>Login</button>
           </p>
         </div> <div class="clear"></div>
+        </form>
       </div> <!-- recipes -->
     </div> <!-- grid-100 -->
   </div> <!-- grid-container -->

@@ -23,7 +23,7 @@ public class User extends GenericEntity {
     @ManyToMany
     private List<Recipe> favoritedRecipes;
 
-    protected User() {
+    public User() {
         super();
         createdRecipes = new ArrayList<>();
         favoritedRecipes = new ArrayList<>();

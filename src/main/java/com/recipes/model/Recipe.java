@@ -154,6 +154,7 @@ public class Recipe extends GenericEntity {
     }
 
     public void setCreatedBy(User createdBy) {
+        createdBy.addCreatedRecipe(this);
         this.createdBy = createdBy;
     }
 

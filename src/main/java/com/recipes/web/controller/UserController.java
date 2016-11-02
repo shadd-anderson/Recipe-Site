@@ -1,19 +1,18 @@
 package com.recipes.web.controller;
 
+import com.recipes.dao.UserRepository;
+import com.recipes.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class UserController {
-    @RequestMapping("/login")
-    public String login() {
-        return "login";
-    }
-
-    @RequestMapping("/signup")
-    public String signup() {
-        return "signup";
-    }
+    @Autowired
+    private UserRepository users;
 
     @RequestMapping("/profile")
     public String profile() {
