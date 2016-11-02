@@ -28,6 +28,6 @@ public class LoginController {
     public String newUser(User user) {
         user.setRoles(new String[]{"ROLE_USER"});
         users.save(user);
-        return "redirect:/login";
+        return "redirect:/recipes";
     }
 }
