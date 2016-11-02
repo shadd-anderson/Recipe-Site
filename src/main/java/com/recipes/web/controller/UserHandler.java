@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @ControllerAdvice(basePackages = "com.recipes.web.controller")
-public class RedirectNoLogin {
+public class UserHandler {
     @Autowired
     private UserRepository users;
 

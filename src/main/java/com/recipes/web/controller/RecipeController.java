@@ -30,10 +30,15 @@ public class RecipeController {
     @Autowired
     private UserRepository users;
 
+    @RequestMapping("/")
+    public String redirectToRecipesPage() {
+        return "redirect:/recipes";
+    }
+
     @RequestMapping("/recipes")
     public String index(Model model) {
         List<Category> allCategories = (List<Category>) categoryRepository.findAll();
-        model.addAttribute("categoryRepository", allCategories);
+        model.addAttribute("categories", allCategories);
         List<Recipe> allRecipes = (List<Recipe>) recipeRepository.findAll();
         model.addAttribute("allRecipes", allRecipes);
         return "index";
@@ -93,14 +98,21 @@ public class RecipeController {
 
     @RequestMapping(path = "/recipes/add", method = RequestMethod.POST)
     public String addRecipe(Model model, Recipe recipe) {
-        if(recipe.getCreatedBy() == null) {
-            String username = SecurityContextHolder.getContext().getAuthentication().getName();
-            User user = users.findByUsername(username);
-            recipe.setCreatedBy(user);
+        Category category = recipe.getCategory();
+        if(categoryRepository.findByName(category.getName()) != null) {
+            recipe.setCategory(categoryRepository.findByName(recipe.getCategory().getName()));
+        } else {
+            categoryRepository.save(category);
         }
-        recipe.setCategory(categoryRepository.findByName(recipe.getCategory().getName()));
         recipe.getIngredients().forEach(ingredient -> ingredientRepository.save(ingredient));
-        recipeRepository.save(recipe);
+        if(recipe.getCreatedBy() == null) {
+            User user = (User)model.asMap().get("user");
+            recipe.setCreatedBy(user);
+            recipeRepository.save(recipe);
+            users.save(user);
+        } else {
+            recipeRepository.save(recipe);
+        }
         return "redirect:/recipes/" + recipe.getId();
     }
 
