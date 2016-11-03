@@ -1,11 +1,11 @@
 <nav th:fragment="navigation">
-    <a th:href="@{/profile}" th:text="${user.username}">
-        Chandra S.
-    </a>
-    &bull;
-    <form th:action="@{/logout}" method="post" style="display: inline">
-        <button>Logout</button>
-    </form>
+        <a th:href="@{/profile}" th:text="${user.username}">
+            Chandra S.
+        </a>
+        &bull;
+        <form th:action="@{/logout}" method="post" style="display: inline">
+            <button>Logout</button>
+        </form>
 </nav>
 
 <div th:fragment="chef-logo" class="grid-100">

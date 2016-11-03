@@ -48,7 +48,9 @@
                     </p>
                 </div>
                 <div class="grid-40">
-                    <input placeholder="Url" name="url" th:field="*{imageUrl}"/>
+                    <p>
+                        <input placeholder="Url" name="url" th:field="*{imageUrl}"/>
+                    </p>
                 </div>
             </div>
             <div class="clear"></div>
@@ -87,13 +89,22 @@
                         <label> Category </label>
                     </p>
                 </div>
-                <div class="grid-30">
-                    <select th:field="*{category.name}">
-                        <option th:each="category: ${categories}" th:value="${category.name}" th:text="${category.name}">All Categories</option>
-                    </select>
+                <div class="grid-30" id="categories">
+                    <p>
+                        <select th:field="*{category.name}" id="oldCategories">
+                            <option id="noCategory" value="" hidden="hidden">All Categories</option>
+                            <option th:each="category: ${categories}" th:value="${category.name}" th:text="${category.name}">All Categories</option>
+                        </select>
+                    </p>
                 </div>
-                <p>Enter a new category:</p>
-                <input th:field="*{category.name}"/>
+                <div style="margin-top: 10px">
+                <p id="or">or</p>
+                <button id="categoryButton" type="button" style="display:inline">+ Enter a new category</button>
+                </div>
+                <p id="enter">Enter a new category:</p>
+                <p id="p">
+                    <input id="newCategory" th:field="*{category.name}"/>
+                </p>
             </div>
             <div class="clear"></div>
 
@@ -209,5 +220,10 @@
         </div> <!-- recipes -->
     </div> <!-- grid-100 -->
 </div> <!-- grid-container -->
+<script
+        src="https://code.jquery.com/jquery-3.1.1.js"
+        integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous"></script>
+<script th:src="@{/js/scripts.js}"></script>
 </body>
 </html>

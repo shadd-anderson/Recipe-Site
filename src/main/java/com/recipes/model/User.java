@@ -83,4 +83,12 @@ public class User extends GenericEntity {
     public void addFavoritedRecipe(Recipe recipe) {
         favoritedRecipes.add(recipe);
     }
+
+    public void removeCreatedRecipe(Recipe recipe) {
+        createdRecipes.remove(recipe);
+    }
+
+    public void removeFavoritedRecipe(Recipe recipe) {
+        favoritedRecipes.remove(recipe);
+    }
 }

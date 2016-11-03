@@ -151,4 +151,19 @@ button {
   width: 90%;
 }
 
+#categoryButton {
+  margin-left: 10px;
+}
+
+#or {
+  display: inline-block;
+  padding-left: 15px;
+}
+
+#newCategory, #p, #enter {
+  width: 200px;
+  display: none;
+  padding-left: inherit;
+}
+
 /*# sourceMappingURL=styles.css.map */

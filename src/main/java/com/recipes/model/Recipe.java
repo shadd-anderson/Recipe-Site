@@ -66,7 +66,6 @@ public class Recipe extends GenericEntity {
         }
 
         public RecipeBuilder addInstruction(String instruction, int step) {
-            instruction = String.format("%d. %s", step + 1, instruction);
             instructions.add(step, instruction);
             return this;
         }
@@ -129,7 +128,6 @@ public class Recipe extends GenericEntity {
     }
 
     public void addInstruction(String instruction, int step) {
-        instruction = String.format("%d. %s", step + 1, instruction);
         instructions.add(step, instruction);
     }
 
@@ -154,7 +152,9 @@ public class Recipe extends GenericEntity {
     }
 
     public void setCreatedBy(User createdBy) {
-        createdBy.addCreatedRecipe(this);
+        if(createdBy != null) {
+            createdBy.addCreatedRecipe(this);
+        }
         this.createdBy = createdBy;
     }
 

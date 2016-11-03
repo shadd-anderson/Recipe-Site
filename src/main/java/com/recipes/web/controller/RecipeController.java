@@ -53,6 +53,10 @@ public class RecipeController {
 
     @RequestMapping(path = "/recipes/{id}/delete", method = RequestMethod.POST)
     public String deleteRecipe(@PathVariable("id") int id) {
+        Recipe recipe = recipeRepository.findOne((long) id);
+        recipe.getCreatedBy().removeCreatedRecipe(recipe);
+        users.save(recipe.getCreatedBy());
+        recipe.setCreatedBy(null);
         recipeRepository.delete((long) id);
         return "redirect:/";
     }
@@ -117,8 +121,13 @@ public class RecipeController {
     }
 
     @RequestMapping(path = "/recipes/{id}/edit", method = RequestMethod.POST)
-    public String saveEditedRecipe(Model model, Recipe recipe) {
-        recipe.setCategory(categoryRepository.findByName(recipe.getCategory().getName()));
+    public String saveEditedRecipe(Recipe recipe) {
+        Category category = recipe.getCategory();
+        if(categoryRepository.findByName(category.getName()) != null) {
+            recipe.setCategory(categoryRepository.findByName(category.getName()));
+        } else {
+            categoryRepository.save(category);
+        }
         recipe.getIngredients().forEach(ingredient -> ingredientRepository.save(ingredient));
         recipeRepository.save(recipe);
         return "redirect:/recipes/" + recipe.getId();
