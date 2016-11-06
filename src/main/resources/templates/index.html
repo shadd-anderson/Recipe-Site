@@ -1,18 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width"/>
-
-  <title>Supreme Recipes</title>
-
-  <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'/>
-  <link rel="stylesheet" th:href="@{css/unsemantic-grid-responsive.css}"/>
-  <link rel="stylesheet" th:href="@{css/styles.css}"/>
-
-</head>
-
+<head th:replace="template :: head('Supreme Recipes')"></head>
 <body>
 
   <div th:replace="template :: navigation"></div>
@@ -49,7 +37,7 @@
         <div class="grid-100 row addHover" style="border-radius: 0;">
           <a th:href="@{|/recipes/${recipe.id}|}">
             <div class="grid-70">
-              <span><img th:src="@{/images/favorite.svg}" height="12px"/> </span>
+              <span><img th:src="@{/assets/images/favorite.svg}" height="12px"/> </span>
               <p th:text="${recipe.name}">
                 Baked Alaskan Salmon with Asparagus
               </p>
@@ -59,8 +47,8 @@
             <div class="grid-30">
               <div class="flush-right">
                 <p>
-                  <a th:href="@{|/recipes/${recipe.id}/edit|}"> <img th:src="@{/images/edit.svg}" height="12px"/> Edit </a>
-                  <form th:action="@{|/recipes/${recipe.id}/delete|}" method="post"><button type="submit"><img th:src="@{/images/delete.svg}" height="12px"/> Delete </button></form>
+                  <a th:href="@{|/recipes/${recipe.id}/edit|}"> <img th:src="@{/assets/images/edit.svg}" height="12px"/> Edit </a>
+                  <form th:action="@{|/recipes/${recipe.id}/delete|}" method="post"><button type="submit"><img th:src="@{/assets/images/delete.svg}" height="12px"/> Delete </button></form>
                 </p>
               </div>
             </div>

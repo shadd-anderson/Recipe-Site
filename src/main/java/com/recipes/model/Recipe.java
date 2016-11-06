@@ -1,5 +1,7 @@
 package com.recipes.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,8 @@ public class Recipe extends GenericEntity {
     private int prepTime;
     private int cookTime;
     @ManyToOne
+    @JoinColumn(name = "created_by_id")
+    @JsonIgnore
     private User createdBy;
     private String imageUrl;
 

@@ -20,7 +20,8 @@ public class LoginController {
     private UserRepository users;
 
     @RequestMapping("/login")
-    public String login() {
+    public String login(Model model) {
+        model.addAttribute("user", new User());
         return "login";
     }
 

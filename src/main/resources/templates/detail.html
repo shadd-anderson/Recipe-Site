@@ -1,17 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head>
-
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width"/>
-
-  <title th:text="|${recipe.name} - Supreme Recipes|">Brioche French Toast with Nutella | My Recipes</title>
-
-  <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'/>
-  <link rel="stylesheet" th:href="@{/css/unsemantic-grid-responsive.css}"/>
-  <link rel="stylesheet" th:href="@{/css/styles.css}"/>
-
-</head>
+<head th:replace="template::head(|${recipe.name} - Supreme Recipes|)"></head>
 
 <body>
 
@@ -34,7 +23,7 @@
           <div class="grid-50">
             <h2 class="flush-right">
               <a href="#">
-                <img th:src="@{/images/favorite.svg}" height="16px"/>
+                <img th:src="@{/assets/images/favorite.svg}" height="16px"/>
               </a>
             </h2>
           </div>

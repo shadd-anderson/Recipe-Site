@@ -56,7 +56,9 @@ public class DatabaseLoader implements ApplicationRunner {
                     .build();
             pizza.setCreatedBy(admin);
             Recipe burger = new Recipe.RecipeBuilder("Burger", american).build();
+            burger.setCreatedBy(admin);
             Recipe spaghetti = new Recipe.RecipeBuilder("Spaghetti", italian).build();
+            spaghetti.setCreatedBy(admin);
             recipes.save(pizza);
             recipes.save(burger);
             recipes.save(spaghetti);

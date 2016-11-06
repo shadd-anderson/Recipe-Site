@@ -18,7 +18,7 @@ public class User extends GenericEntity {
     private String password;
     @JsonIgnore
     private String[] roles;
-    @OneToMany
+    @OneToMany(mappedBy = "createdBy")
     private List<Recipe> createdRecipes;
     @ManyToMany
     private List<Recipe> favoritedRecipes;

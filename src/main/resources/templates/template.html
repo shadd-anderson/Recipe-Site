@@ -1,3 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head th:fragment="head(title)">
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+
+    <title th:text="${title}">Login | Supreme Recipes</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" th:href="@{/assets/css/unsemantic-grid-responsive.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/styles.css}"/>
+
+</head>
+<body>
+
 <nav th:fragment="navigation">
         <a th:href="@{/profile}" th:text="${user.username}">
             Chandra S.
@@ -11,9 +27,11 @@
 <div th:fragment="chef-logo" class="grid-100">
     <a th:href="@{/recipes}">
         <h1>
-            <img th:src="@{/images/chefbot.svg}" height="60px"/>
+            <img th:src="@{/assets/images/chefbot.svg}" height="60px"/>
             <br/>
             Supreme Recipes
         </h1>
     </a>
 </div>
+</body>
+</html>

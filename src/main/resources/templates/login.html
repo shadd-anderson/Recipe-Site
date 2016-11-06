@@ -8,11 +8,10 @@
   <title>Login | Supreme Recipes</title>
 
   <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'/>
-  <link rel="stylesheet" th:href="@{css/unsemantic-grid-responsive.css}"/>
-  <link rel="stylesheet" th:href="@{css/styles.css}"/>
+  <link rel="stylesheet" th:href="@{/assets/css/unsemantic-grid-responsive.css}"/>
+  <link rel="stylesheet" th:href="@{/assets/css/styles.css}"/>
 
 </head>
-
 <body>
 
   <nav>
@@ -33,15 +32,15 @@
 
     <div class="grid-100">
       <div class="recipes">
-        <form th:action="@{/login}" method="post">
+        <form th:action="@{/login}" method="post" th:object="${user}">
         <div class="prefix-20 grid-60 suffix-20">
           <p>
-            <input placeholder="Username"/>
+            <input placeholder="Username" th:field="*{username}"/>
           </p>
         </div> <div class="clear"></div>
         <div class="prefix-20 grid-60 suffix-20">
           <p>
-            <input placeholder="Password" type="password"/>
+            <input placeholder="Password" type="password" th:field="*{password}"/>
           </p>
         </div> <div class="clear"></div>
         <div class="prefix-20 grid-60 suffix-20">
