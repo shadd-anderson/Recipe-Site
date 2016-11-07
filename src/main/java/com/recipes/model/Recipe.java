@@ -131,8 +131,8 @@ public class Recipe extends GenericEntity {
         return instructions;
     }
 
-    public void addInstruction(String instruction, int step) {
-        instructions.add(step, instruction);
+    public void removeInstruction(String instruction) {
+        instructions.remove(instruction);
     }
 
     public int getPrepTime() {

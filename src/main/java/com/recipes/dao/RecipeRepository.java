@@ -11,8 +11,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 public interface RecipeRepository extends CrudRepository<Recipe, Long> {
-    @RestResource(rel = "name-contains", path = "containsName")
-    List<Recipe> findByNameContaining(@Param("name") String name);
+    @RestResource(rel = "description-contains", path = "containsDescription")
+    List<Recipe> findByDescriptionContaining(@Param("description") String description);
 
     @RestResource(rel = "category", path = "category")
     List<Recipe> findByCategoryName(@Param("name") String name);

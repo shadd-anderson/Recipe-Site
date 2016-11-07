@@ -14,7 +14,7 @@
     <div class="grid-100">
 
         <div class="recipes">
-            <form th:action="@{${action}}" th:object="${recipe}" method="post">
+            <form th:action="@{${action}}" th:object="${recipe}" method="post" id="recipeForm">
 
             <div class="grid-100 row controls">
                 <div class="grid-50">
@@ -22,7 +22,7 @@
                 </div>
                 <div class="grid-50">
                     <div class="flush-right">
-                        <button type="submit">Save Recipe</button>
+                        <button type="button" id="saveRecipe">Save Recipe</button>
                         <button class="secondary"><a th:href="@{${redirect}}">Cancel</a></button>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                 <div class="grid-30" id="categories">
                     <p>
                         <select th:field="*{category.name}" id="oldCategories">
-                            <option id="noCategory" value="" hidden="hidden">All Categories</option>
+                            <option id="noCategory" value="" hidden="hidden">Select a Category</option>
                             <option th:each="category: ${categories}" th:value="${category.name}" th:text="${category.name}">All Categories</option>
                         </select>
                     </p>
@@ -147,8 +147,8 @@
                         <label> Measurement </label>
                     </p>
                 </div>
-
-                    <div class="ingredient-row" th:each="ingredient: *{ingredients}">
+                <div th:each="ingredient: *{ingredients}">
+                    <div class="ingredient-row" th:id="'ingredientNumber' + ${ingredientStat.index}">
                         <div class="prefix-20 grid-30">
                             <input type="hidden" th:field="*{ingredients[__${ingredientStat.index}__].id}"/>
                             <p>
@@ -157,7 +157,7 @@
                         </div>
                         <div class="grid-10 suffix-10">
                             <p>
-                                <input th:field="*{ingredients[__${ingredientStat.index}__].quantity}" style="width: 214%"/>
+                                <input class="quantity" th:field="*{ingredients[__${ingredientStat.index}__].quantity}" style="width: 214%"/>
                             </p>
                         </div>
                         <div class="grid-30">
@@ -166,10 +166,10 @@
                             </p>
                         </div>
                     </div>
-
-                <div class="prefix-20 grid-80 add-row">
+                </div>
+                <div id="newIngredientButton" class="prefix-20 grid-80 add-row">
                     <p>
-                        <button>+ Add Another Ingredient</button>
+                        <button type="button" id="newIngredient">+ Add Another Ingredient</button>
                     </p>
                 </div>
 
@@ -196,9 +196,9 @@
                     </div>
                 </div>
 
-                <div class="prefix-20 grid-80 add-row">
+                <div id="newStepButton" class="prefix-20 grid-80 add-row">
                     <p>
-                        <button>+ Add Another Step</button>
+                        <button id="newStep" type="button">+ Add Another Step</button>
                     </p>
                 </div>
 
@@ -214,6 +214,6 @@
         src="https://code.jquery.com/jquery-3.1.1.js"
         integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
         crossorigin="anonymous"></script>
-<script th:src="@{/js/scripts.js}"></script>
+<script th:src="@{/assets/js/scripts.js}"></script>
 </body>
 </html>

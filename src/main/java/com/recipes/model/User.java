@@ -1,6 +1,7 @@
 package com.recipes.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.access.method.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -90,5 +91,14 @@ public class User extends GenericEntity {
 
     public void removeFavoritedRecipe(Recipe recipe) {
         favoritedRecipes.remove(recipe);
+    }
+
+    public boolean isAdmin() {
+        for(int i = 0; i < roles.length; i++) {
+            if(roles[i].equals("ROLE_ADMIN")) {
+                return true;
+            }
+        }
+        return false;
     }
 }

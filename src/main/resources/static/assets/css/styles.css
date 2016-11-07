@@ -20,7 +20,7 @@ h1 {
 
 h2 {
   font-size: 20px;
-  margin-top: 25px; }
+  margin-top: 18px; }
 
 nav {
   text-align: right;
@@ -143,6 +143,21 @@ button {
 .step-row .prefix-20:first-child {
     display: inline-block;
     margin-left: 0;
+}
+
+.flash {
+  color: white;
+  text-align: center;
+  width: 80%;
+  margin: 2% auto;
+  padding: 1%;
+  border-radius: 10px;
+}
+.success {
+  background: #00cc00;
+}
+.failure {
+  background: #cc0000;
 }
 
 .error-message {

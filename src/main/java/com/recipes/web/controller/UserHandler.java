@@ -30,7 +30,7 @@ public class UserHandler {
         return "redirect:/login";
     }
 
-    @ModelAttribute("user")
+    @ModelAttribute("currentUser")
     public User addUser() {
         if(SecurityContextHolder.getContext().getAuthentication() != null) {
             String username = SecurityContextHolder.getContext().getAuthentication().getName();

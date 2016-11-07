@@ -15,7 +15,7 @@
 <body>
 
 <nav th:fragment="navigation">
-        <a th:href="@{/profile}" th:text="${user.username}">
+        <a th:href="@{/profile}" th:text="${currentUser.username}">
             Chandra S.
         </a>
         &bull;
@@ -32,6 +32,9 @@
             Supreme Recipes
         </h1>
     </a>
+</div>
+
+<div class="flash" th:if="${flash}" th:classappend="${#strings.toLowerCase(flash.status)}" th:text="${flash.message}" th:fragment="flash">
 </div>
 </body>
 </html>

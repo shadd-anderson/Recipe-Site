@@ -20,4 +20,9 @@ public class FlashMessage {
     public enum Status {
         SUCCESS, FAILURE
     }
+
+    @Override
+    public String toString() {
+        return message;
+    }
 }

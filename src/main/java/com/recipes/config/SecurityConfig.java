@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/assets/**");
+        web.ignoring().antMatchers("/assets/");
     }
 
     @Override
@@ -44,9 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // here we permit sign up page to be open
                 // as well as login page
                 .antMatchers("/signup").permitAll()
-                .anyRequest()
-                // it infers "ROLE_USER"
-                .hasRole("USER")
+                .anyRequest().permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -68,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     public AuthenticationFailureHandler loginFailureHandler() {
         return (request, response, exception) -> {
-            request.getSession().setAttribute("errorMessage",
+            request.getSession().setAttribute("flash",
                     new FlashMessage(
                             "Incorrect username and/or password. " +
                                     "Try again.",

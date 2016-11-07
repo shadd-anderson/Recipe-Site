@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,9 +18,24 @@ public class UserController {
 
     @RequestMapping("/profile")
     public String profile(Model model) {
-        User user = (User)model.asMap().get("user");
+        User user = (User)model.asMap().get("currentUser");
+        model.addAttribute("user", user);
+        model.addAttribute("authenticated", true);
         model.addAttribute("favoritedRecipes", user.getFavoritedRecipes());
         model.addAttribute("createdRecipes", user.getCreatedRecipes());
+        return "profile";
+    }
+
+    @RequestMapping("/users/{id}")
+    public String userProfile(@PathVariable("id") Long id, Model model) {
+        User user = users.findOne(id);
+        User currentUser = (User) model.asMap().get("currentUser");
+        if(currentUser.isAdmin()) {
+            model.addAttribute("authenticated", true);
+        }
+        model.addAttribute("favoritedRecipes", user.getFavoritedRecipes());
+        model.addAttribute("createdRecipes", user.getCreatedRecipes());
+        model.addAttribute("user", user);
         return "profile";
     }
 }
