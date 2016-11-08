@@ -9,6 +9,9 @@ import com.recipes.model.Category;
 import com.recipes.model.Ingredient;
 import com.recipes.model.Recipe;
 import com.recipes.model.User;
+import com.recipes.service.CategoryService;
+import com.recipes.service.IngredientService;
+import com.recipes.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -19,13 +22,13 @@ import java.util.stream.IntStream;
 
 @Component
 public class DatabaseLoader implements ApplicationRunner {
-    private UserRepository users;
-    private IngredientRepository ingredients;
+    private UserService users;
+    private IngredientService ingredients;
     private RecipeRepository recipes;
-    private CategoryRepository categories;
+    private CategoryService categories;
 
     @Autowired
-    public DatabaseLoader(UserRepository users, IngredientRepository ingredients, RecipeRepository recipes, CategoryRepository categories) {
+    public DatabaseLoader(UserService users, IngredientService ingredients, RecipeRepository recipes, CategoryService categories) {
         this.users = users;
         this.ingredients = ingredients;
         this.recipes = recipes;

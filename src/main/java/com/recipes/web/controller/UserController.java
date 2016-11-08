@@ -2,6 +2,7 @@ package com.recipes.web.controller;
 
 import com.recipes.dao.UserRepository;
 import com.recipes.model.User;
+import com.recipes.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class UserController {
     @Autowired
-    private UserRepository users;
+    private UserService users;
 
     @RequestMapping("/profile")
     public String profile(Model model) {

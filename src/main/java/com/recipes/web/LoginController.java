@@ -2,6 +2,7 @@ package com.recipes.web;
 
 import com.recipes.dao.UserRepository;
 import com.recipes.model.User;
+import com.recipes.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,7 +22,7 @@ import static com.recipes.web.FlashMessage.Status.SUCCESS;
 @Controller
 public class LoginController {
     @Autowired
-    private UserRepository users;
+    private UserService users;
 
     @RequestMapping("/login")
     public String login(Model model) {

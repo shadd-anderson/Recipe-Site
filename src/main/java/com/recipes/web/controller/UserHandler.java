@@ -1,22 +1,20 @@
 package com.recipes.web.controller;
 
-import com.recipes.dao.UserRepository;
 import com.recipes.model.User;
+import com.recipes.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.config.authentication.UserServiceBeanDefinitionParser;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @ControllerAdvice(basePackages = "com.recipes.web.controller")
 public class UserHandler {
     @Autowired
-    private UserRepository users;
+    private UserService users;
 
     @ExceptionHandler(AccessDeniedException.class)
     public String redirectNonUser(RedirectAttributes attributes) {

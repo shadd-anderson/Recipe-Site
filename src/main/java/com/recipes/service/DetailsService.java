@@ -1,6 +1,5 @@
 package com.recipes.service;
 
-import com.recipes.dao.UserRepository;
 import com.recipes.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class DetailsService implements UserDetailsService {
     @Autowired
-    private UserRepository users;
+    private UserService users;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

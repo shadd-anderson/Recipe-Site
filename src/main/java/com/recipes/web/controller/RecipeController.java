@@ -1,12 +1,13 @@
 package com.recipes.web.controller;
 
-import com.recipes.dao.CategoryRepository;
-import com.recipes.dao.IngredientRepository;
-import com.recipes.dao.RecipeRepository;
 import com.recipes.dao.UserRepository;
 import com.recipes.model.Category;
 import com.recipes.model.Recipe;
 import com.recipes.model.User;
+import com.recipes.service.CategoryService;
+import com.recipes.service.IngredientService;
+import com.recipes.service.RecipeService;
+import com.recipes.service.UserService;
 import com.recipes.web.FlashMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,13 +27,13 @@ import static com.recipes.web.FlashMessage.Status.SUCCESS;
 @Controller
 public class RecipeController {
     @Autowired
-    private RecipeRepository recipeRepository;
+    private RecipeService recipeService;
     @Autowired
-    private CategoryRepository categoryRepository;
+    private CategoryService categoryService;
     @Autowired
-    private IngredientRepository ingredientRepository;
+    private IngredientService ingredientService;
     @Autowired
-    private UserRepository users;
+    private UserService users;
 
     @RequestMapping("/")
     public String redirectToRecipesPage() {
@@ -43,16 +44,16 @@ public class RecipeController {
     public String index(Model model) {
         User user = (User) model.asMap().get("currentUser");
         model.addAttribute("authenticated", user.isAdmin());
-        List<Category> allCategories = (List<Category>) categoryRepository.findAll();
+        List<Category> allCategories = categoryService.findAll();
         model.addAttribute("categories", allCategories);
-        List<Recipe> allRecipes = (List<Recipe>) recipeRepository.findAll();
+        List<Recipe> allRecipes = recipeService.findAll();
         model.addAttribute("allRecipes", allRecipes);
         return "index";
     }
 
     @RequestMapping("/recipes/{id}")
     public String detail(Model model, @PathVariable("id") int id) {
-        Recipe recipe = recipeRepository.findOne((long) id);
+        Recipe recipe = recipeService.findOne((long) id);
         model.addAttribute("recipe", recipe);
         return "detail";
     }
@@ -60,12 +61,12 @@ public class RecipeController {
     @RequestMapping(path = "/recipes/{id}/delete", method = RequestMethod.POST)
     public String deleteRecipe(@PathVariable("id") int id, Model model, RedirectAttributes attributes) {
         User user = (User) model.asMap().get("currentUser");
-        Recipe recipe = recipeRepository.findOne((long) id);
+        Recipe recipe = recipeService.findOne((long) id);
         if(recipe.getCreatedBy() == user || user.isAdmin()) {
             recipe.getCreatedBy().removeCreatedRecipe(recipe);
             users.save(recipe.getCreatedBy());
             recipe.setCreatedBy(null);
-            recipeRepository.delete((long) id);
+            recipeService.delete((long) id);
             attributes.addFlashAttribute("flash", new FlashMessage("Recipe deleted successfully", SUCCESS));
         } else {
             attributes.addFlashAttribute("flash", new FlashMessage("You are not allowed to delete this recipe.", FAILURE));
@@ -76,11 +77,11 @@ public class RecipeController {
     //TODO: user-admin
     @RequestMapping("/recipes/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
-        Recipe recipe = recipeRepository.findOne((long) id);
+        Recipe recipe = recipeService.findOne((long) id);
         model.addAttribute("recipe", recipe);
         model.addAttribute("action", "/recipes/" + id + "/edit");
         model.addAttribute("redirect", "/recipes/" + id);
-        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("categories", categoryService.findAll());
         return "edit";
     }
 
@@ -89,17 +90,17 @@ public class RecipeController {
         List<Recipe> queriedRecipes = new ArrayList<>();
         if(searchQuery != null) {
             model.addAttribute("search", searchQuery);
-            List<Recipe> namedRecipes = recipeRepository.findByDescriptionContaining(searchQuery);
+            List<Recipe> namedRecipes = recipeService.findByDescriptionContaining(searchQuery);
             if(!category.equals("")) {
-                List<Recipe> categorizedRecipes = recipeRepository.findByCategoryName(category);
+                List<Recipe> categorizedRecipes = recipeService.findByCategoryName(category);
                 queriedRecipes = namedRecipes.stream().filter(categorizedRecipes::contains).collect(Collectors.toList());
             } else {
                 queriedRecipes = namedRecipes;
             }
         }
         model.addAttribute("allRecipes", queriedRecipes);
-        List<Category> allCategories = (List<Category>) categoryRepository.findAll();
-        model.addAttribute("categoryRepository", allCategories);
+        List<Category> allCategories = categoryService.findAll();
+        model.addAttribute("categoryService", allCategories);
         return "index";
     }
 
@@ -109,26 +110,26 @@ public class RecipeController {
         model.addAttribute("recipe", recipe);
         model.addAttribute("action", "/recipes/add");
         model.addAttribute("redirect", "/");
-        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("categories", categoryService.findAll());
         return "edit";
     }
 
     @RequestMapping(path = "/recipes/add", method = RequestMethod.POST)
     public String addRecipe(Model model, Recipe recipe) {
         Category category = recipe.getCategory();
-        if(categoryRepository.findByName(category.getName()) != null) {
-            recipe.setCategory(categoryRepository.findByName(recipe.getCategory().getName()));
+        if(categoryService.findByName(category.getName()) != null) {
+            recipe.setCategory(categoryService.findByName(recipe.getCategory().getName()));
         } else {
-            categoryRepository.save(category);
+            categoryService.save(category);
         }
-        recipe.getIngredients().forEach(ingredient -> ingredientRepository.save(ingredient));
+        recipe.getIngredients().forEach(ingredient -> ingredientService.save(ingredient));
         if(recipe.getCreatedBy() == null) {
             User user = (User)model.asMap().get("currentUser");
             recipe.setCreatedBy(user);
-            recipeRepository.save(recipe);
+            recipeService.save(recipe);
             users.save(user);
         } else {
-            recipeRepository.save(recipe);
+            recipeService.save(recipe);
         }
         return "redirect:/recipes/" + recipe.getId();
     }
@@ -136,18 +137,18 @@ public class RecipeController {
     @RequestMapping(path = "/recipes/{id}/edit", method = RequestMethod.POST)
     public String saveEditedRecipe(Recipe recipe) {
         Category category = recipe.getCategory();
-        if(categoryRepository.findByName(category.getName()) != null) {
-            recipe.setCategory(categoryRepository.findByName(category.getName()));
+        if(categoryService.findByName(category.getName()) != null) {
+            recipe.setCategory(categoryService.findByName(category.getName()));
         } else {
-            categoryRepository.save(category);
+            categoryService.save(category);
         }
-        recipe.getIngredients().forEach(ingredient -> ingredientRepository.save(ingredient));
+        recipe.getIngredients().forEach(ingredient -> ingredientService.save(ingredient));
         recipe.getInstructions()
                 .stream()
                 .filter(instruction -> instruction.equals(""))
                 .collect(Collectors.toList())
                 .forEach(recipe::removeInstruction);
-        recipeRepository.save(recipe);
+        recipeService.save(recipe);
         return "redirect:/recipes/" + recipe.getId();
     }
 
