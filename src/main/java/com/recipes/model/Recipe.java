@@ -59,11 +59,6 @@ public class Recipe extends GenericEntity {
             instructions = new ArrayList<>();
         }
 
-        public RecipeBuilder setIngredients(List<Ingredient> ingredients) {
-            this.ingredients = ingredients;
-            return this;
-        }
-
         public RecipeBuilder addIngredient(Ingredient ingredient) {
             ingredients.add(ingredient);
             return this;
@@ -176,5 +171,39 @@ public class Recipe extends GenericEntity {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Recipe recipe = (Recipe) o;
+
+        if (prepTime != recipe.prepTime) return false;
+        if (cookTime != recipe.cookTime) return false;
+        if (!name.equals(recipe.name)) return false;
+        if (description != null ? !description.equals(recipe.description) : recipe.description != null) return false;
+        if (category != null ? !category.equals(recipe.category) : recipe.category != null) return false;
+        if (ingredients != null ? !ingredients.equals(recipe.ingredients) : recipe.ingredients != null) return false;
+        if (instructions != null ? !instructions.equals(recipe.instructions) : recipe.instructions != null)
+            return false;
+        if (createdBy != null ? !createdBy.equals(recipe.createdBy) : recipe.createdBy != null) return false;
+        return imageUrl != null ? imageUrl.equals(recipe.imageUrl) : recipe.imageUrl == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (category != null ? category.hashCode() : 0);
+        result = 31 * result + (ingredients != null ? ingredients.hashCode() : 0);
+        result = 31 * result + (instructions != null ? instructions.hashCode() : 0);
+        result = 31 * result + prepTime;
+        result = 31 * result + cookTime;
+        result = 31 * result + (createdBy != null ? createdBy.hashCode() : 0);
+        result = 31 * result + (imageUrl != null ? imageUrl.hashCode() : 0);
+        return result;
     }
 }

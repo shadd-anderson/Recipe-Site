@@ -22,8 +22,6 @@ public class UserController {
         User user = (User)model.asMap().get("currentUser");
         model.addAttribute("user", user);
         model.addAttribute("authenticated", true);
-        model.addAttribute("favoritedRecipes", user.getFavoritedRecipes());
-        model.addAttribute("createdRecipes", user.getCreatedRecipes());
         return "profile";
     }
 
@@ -31,11 +29,11 @@ public class UserController {
     public String userProfile(@PathVariable("id") Long id, Model model) {
         User user = users.findOne(id);
         User currentUser = (User) model.asMap().get("currentUser");
-        if(currentUser.isAdmin()) {
-            model.addAttribute("authenticated", true);
+        if(currentUser != null) {
+            if (currentUser.isAdmin()) {
+                model.addAttribute("authenticated", true);
+            }
         }
-        model.addAttribute("favoritedRecipes", user.getFavoritedRecipes());
-        model.addAttribute("createdRecipes", user.getCreatedRecipes());
         model.addAttribute("user", user);
         return "profile";
     }

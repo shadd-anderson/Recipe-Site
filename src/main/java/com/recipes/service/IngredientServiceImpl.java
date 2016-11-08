@@ -3,7 +3,9 @@ package com.recipes.service;
 import com.recipes.dao.IngredientRepository;
 import com.recipes.model.Ingredient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class IngredientServiceImpl implements IngredientService {
     @Autowired
     private IngredientRepository ingredientRepository;

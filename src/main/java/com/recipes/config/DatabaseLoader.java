@@ -37,7 +37,7 @@ public class DatabaseLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        if(((List<User>)users.findAll()).isEmpty()) {
+        if((users.findAll()).isEmpty()) {
             User admin = new User("admin", "password", new String[]{"ROLE_ADMIN", "ROLE_USER"});
             User nonAdmin = new User("non-admin", "password", new String[]{"ROLE_USER"});
             users.save(admin);
