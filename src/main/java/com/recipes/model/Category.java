@@ -31,11 +31,10 @@ public class Category extends GenericEntity {
         Category category = (Category) o;
 
         return name.equals(category.name);
-
     }
 
     @Override
-    public int hashCode() {
-        return name.hashCode();
+    public String toString() {
+        return name;
     }
 }

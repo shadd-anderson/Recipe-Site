@@ -110,11 +110,5 @@ public class User extends GenericEntity {
         User user = (User) o;
 
         return username.equals(user.username) && user.getId() == this.getId();
-
-    }
-
-    @Override
-    public int hashCode() {
-        return username != null ? username.hashCode() : 0;
     }
 }

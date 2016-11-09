@@ -137,20 +137,44 @@ public class RecipeControllerTest {
         when(recipeService.findByCategoryName("category")).thenReturn(Collections.singletonList(testRecipe()));
         when(categoryService.findAll()).thenReturn(testCategories());
 
-        mockMvc.perform(get("/search?searchQuery=testing&category="))
+        mockMvc.perform(get("/search?searchQuery=testing&category=&method=description"))
 
         .andExpect(model().attribute("allRecipes", hasSize(2)));
     }
 
     @Test
-    public void searchWithCategoryWorks() throws Exception {
+    public void searchWithDescriptionAndCategoryWorks() throws Exception {
         when(recipeService.findByDescriptionContaining("testing")).thenReturn(testRecipes());
         when(recipeService.findByCategoryName("category")).thenReturn(Collections.singletonList(testRecipe()));
         when(categoryService.findAll()).thenReturn(testCategories());
 
-        mockMvc.perform(get("/search?searchQuery=testing&category=category"))
+        mockMvc.perform(get("/search?searchQuery=testing&category=category&method=description"))
 
         .andExpect(model().attribute("allRecipes", hasSize(1)));
+    }
+
+    @Test
+    public void searchByOnlyIngredientWorks() throws Exception {
+        when(recipeService.findByIngredient("ingredient")).thenReturn(Collections.singletonList(1L));
+        when(recipeService.findOne(1L)).thenReturn(testRecipe());
+        when(recipeService.findByCategoryName("category")).thenReturn(Collections.singletonList(testRecipe()));
+        when(categoryService.findAll()).thenReturn(testCategories());
+
+        mockMvc.perform(get("/search?searchQuery=ingredient&category=&method=ingredient"))
+
+        .andExpect(model().attribute("allRecipes", hasSize(1)));
+    }
+
+    @Test
+    public void searchByIngredientAndCategoryWorks() throws Exception {
+        when(recipeService.findByIngredient("ingredient")).thenReturn(Collections.singletonList(1L));
+        when(recipeService.findOne(1L)).thenReturn(testRecipe());
+        when(recipeService.findByCategoryName("notCategory")).thenReturn(new ArrayList<>());
+        when(categoryService.findAll()).thenReturn(testCategories());
+
+        mockMvc.perform(get("/search?searchQuery=ingredient&category=notCategory&method=ingredient"))
+
+        .andExpect(model().attribute("allRecipes", hasSize(0)));
     }
 
     @Test
@@ -209,7 +233,7 @@ public class RecipeControllerTest {
     }
 
     private Recipe testRecipe() {
-        Recipe recipe = new RecipeBuilder("test", new Category("category")).setDescription("testing").build();
+        Recipe recipe = new RecipeBuilder("test", new Category("category")).setDescription("testing").addIngredient(ingredient).build();
         recipe.setId(1L);
         return recipe;
     }
@@ -224,4 +248,6 @@ public class RecipeControllerTest {
     private List<Category> testCategories() {
         return Collections.singletonList(new Category("category"));
     }
+
+    private Ingredient ingredient = new Ingredient("ingredient", "measurement", 5);
 }

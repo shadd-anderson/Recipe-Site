@@ -173,6 +173,14 @@ public class Recipe extends GenericEntity {
         this.imageUrl = imageUrl;
     }
 
+    public boolean isFavorited(User user) {
+        if(user.getFavoritedRecipes().contains(this)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -191,19 +199,5 @@ public class Recipe extends GenericEntity {
         if (createdBy != null ? !createdBy.equals(recipe.createdBy) : recipe.createdBy != null) return false;
         return imageUrl != null ? imageUrl.equals(recipe.imageUrl) : recipe.imageUrl == null;
 
-    }
-
-    @Override
-    public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (category != null ? category.hashCode() : 0);
-        result = 31 * result + (ingredients != null ? ingredients.hashCode() : 0);
-        result = 31 * result + (instructions != null ? instructions.hashCode() : 0);
-        result = 31 * result + prepTime;
-        result = 31 * result + cookTime;
-        result = 31 * result + (createdBy != null ? createdBy.hashCode() : 0);
-        result = 31 * result + (imageUrl != null ? imageUrl.hashCode() : 0);
-        return result;
     }
 }

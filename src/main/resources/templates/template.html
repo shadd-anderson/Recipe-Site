@@ -36,5 +36,10 @@
 
 <div class="flash" th:if="${flash}" th:classappend="${#strings.toLowerCase(flash.status)}" th:text="${flash.message}" th:fragment="flash">
 </div>
+<form th:fragment="favoritedHeart" th:action="@{|/recipes/${recipe.id}/favorite|}" method="post" style="display:inline">
+    <button type="submit" style="display: inline; background: white; padding: 0;">
+<img th:src="${recipe.isFavorited(currentUser)} ? @{/assets/images/favorited.svg} : @{/assets/images/favorite.svg}" style="height: 16px;">
+    </button>
+</form>
 </body>
 </html>

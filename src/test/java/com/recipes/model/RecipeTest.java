@@ -30,5 +30,8 @@ public class RecipeTest {
         assertThat("recipe prep time is correct", recipe.getPrepTime() == 10);
         assertThat("recipe description is 'description'", recipe.getDescription().equals("description"));
         assertThat("recipe image URL set", recipe.getImageUrl().equals("image"));
+        assertThat("recipe is not favorited by user", !recipe.isFavorited(user));
     }
+
+    private User user = new User();
 }

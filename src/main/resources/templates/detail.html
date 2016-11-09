@@ -11,6 +11,8 @@
 
     <div th:replace="template :: chef-logo"></div>
 
+    <div th:replace="template :: flash"></div>
+
     <div class="grid-100">
 
       <div class="recipes">
@@ -20,12 +22,10 @@
             <h2 th:text="${recipe.name}"> Brioche French Toast with Nutella </h2>
             <a th:href="@{|/users/${recipe.createdBy.id}|}"><h3 th:text="|by ${recipe.createdBy.username}|">by user</h3></a>
           </div>
-          <div class="grid-50">
-            <h2 class="flush-right">
-              <a href="#">
-                <img th:src="@{/assets/images/favorite.svg}" height="16px"/>
-              </a>
-            </h2>
+          <div class="grid-50" style="margin-top: 15px;">
+            <div class="flush-right">
+              <form th:replace="template :: favoritedHeart"></form>
+            </div>
           </div>
         </div> <div class="clear"></div>
 
