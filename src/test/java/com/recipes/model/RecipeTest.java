@@ -13,8 +13,8 @@ public class RecipeTest {
         Recipe recipe = new Recipe.RecipeBuilder("recipe", category)
                 .addIngredient(ingredient)
                 .addInstruction("instruction", 0)
-                .setCookTime(5)
-                .setPrepTime(10)
+                .setCookTime("5 minutes")
+                .setPrepTime("10 minutes")
                 .setDescription("description")
                 .setImage("image")
                 .build();
@@ -26,8 +26,8 @@ public class RecipeTest {
         assertThat("ingredient measurement is correct", recipe.getIngredients().get(0).getMeasurement().equals("measurement"));
         assertThat("ingredient amount is correct", recipe.getIngredients().get(0).getQuantity() == 5);
         assertThat("recipe has one instruction", recipe.getInstructions().size() == 1);
-        assertThat("recipe cook time is correct", recipe.getCookTime() == 5);
-        assertThat("recipe prep time is correct", recipe.getPrepTime() == 10);
+        assertThat("recipe cook time is correct", recipe.getCookTime().equals("5 minutes"));
+        assertThat("recipe prep time is correct", recipe.getPrepTime().equals("10 minutes"));
         assertThat("recipe description is 'description'", recipe.getDescription().equals("description"));
         assertThat("recipe image URL set", recipe.getImageUrl().equals("image"));
         assertThat("recipe is not favorited by user", !recipe.isFavorited(user));

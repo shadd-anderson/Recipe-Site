@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Recipe extends GenericEntity {
@@ -16,8 +17,8 @@ public class Recipe extends GenericEntity {
     private List<Ingredient> ingredients;
     @ElementCollection
     private List<String> instructions;
-    private int prepTime;
-    private int cookTime;
+    private String prepTime;
+    private String cookTime;
     @ManyToOne
     @JoinColumn(name = "created_by_id")
     @JsonIgnore
@@ -48,8 +49,8 @@ public class Recipe extends GenericEntity {
         private Category category;
         private List<Ingredient> ingredients;
         private List<String> instructions;
-        private int prepTime;
-        private int cookTime;
+        private String prepTime;
+        private String cookTime;
         private String imageUrl;
 
         public RecipeBuilder(String name, Category category) {
@@ -69,12 +70,12 @@ public class Recipe extends GenericEntity {
             return this;
         }
 
-        public RecipeBuilder setPrepTime(int prepTime) {
+        public RecipeBuilder setPrepTime(String prepTime) {
             this.prepTime = prepTime;
             return this;
         }
 
-        public RecipeBuilder setCookTime(int cookTime) {
+        public RecipeBuilder setCookTime(String cookTime) {
             this.cookTime = cookTime;
             return this;
         }
@@ -130,19 +131,19 @@ public class Recipe extends GenericEntity {
         instructions.remove(instruction);
     }
 
-    public int getPrepTime() {
+    public String getPrepTime() {
         return prepTime;
     }
 
-    public void setPrepTime(int prepTime) {
+    public void setPrepTime(String prepTime) {
         this.prepTime = prepTime;
     }
 
-    public int getCookTime() {
+    public String getCookTime() {
         return cookTime;
     }
 
-    public void setCookTime(int cookTime) {
+    public void setCookTime(String cookTime) {
         this.cookTime = cookTime;
     }
 
@@ -188,16 +189,16 @@ public class Recipe extends GenericEntity {
 
         Recipe recipe = (Recipe) o;
 
-        if (prepTime != recipe.prepTime) return false;
-        if (cookTime != recipe.cookTime) return false;
+        if (!Objects.equals(prepTime, recipe.prepTime)) return false;
+        if (!Objects.equals(cookTime, recipe.cookTime)) return false;
         if (!name.equals(recipe.name)) return false;
-        if (description != null ? !description.equals(recipe.description) : recipe.description != null) return false;
-        if (category != null ? !category.equals(recipe.category) : recipe.category != null) return false;
-        if (ingredients != null ? !ingredients.equals(recipe.ingredients) : recipe.ingredients != null) return false;
-        if (instructions != null ? !instructions.equals(recipe.instructions) : recipe.instructions != null)
+        if (!Objects.equals(description, recipe.description)) return false;
+        if (!Objects.equals(category, recipe.category)) return false;
+        if (!Objects.equals(ingredients, recipe.ingredients)) return false;
+        if (!Objects.equals(instructions, recipe.instructions))
             return false;
-        if (createdBy != null ? !createdBy.equals(recipe.createdBy) : recipe.createdBy != null) return false;
-        return imageUrl != null ? imageUrl.equals(recipe.imageUrl) : recipe.imageUrl == null;
+        if (!Objects.equals(createdBy, recipe.createdBy)) return false;
+        return Objects.equals(imageUrl, recipe.imageUrl);
 
     }
 }

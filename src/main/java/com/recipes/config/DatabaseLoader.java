@@ -51,11 +51,11 @@ public class DatabaseLoader implements ApplicationRunner {
             Recipe pizza = new Recipe.RecipeBuilder("Pizza", american)
                     .addIngredient(ingredient)
                     .setDescription("Mmm... Delicious pizza")
-                    .setCookTime(15)
-                    .setPrepTime(5)
+                    .setCookTime("15 minutes")
+                    .setPrepTime("5 minutes")
                     .addInstruction("Place pizza in oven", 0)
                     .addInstruction("Cook pizza for 15 minutes", 1)
-                    .setImage("http://kingrichiespizza.com/wp-content/uploads/2015/12/d5a3498cfc9e53130b5f815ef44713b7_Jet.jpg")
+                    .setImage("http://throughherlookingglass.com/wp-content/uploads/2015/02/Homemade-Pizza1.jpg")
                     .build();
             pizza.setCreatedBy(admin);
             Recipe burger = new Recipe.RecipeBuilder("Burger", american).build();
